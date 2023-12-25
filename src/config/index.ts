@@ -21,26 +21,26 @@ config({
 })
 
 export const configEnvs = {
-  appEnv: process.env.NODE_ENV,
-  port: process.env.PORT || 3000,
-  hostMongo: process.env.MONGO_URI,
-  passMongo: process.env.MONGO_PASS,
-  dbMongo: process.env.MONGO_DB,
-  jwtSecret: process.env.JWT_SECRET,
-  jwtExpired: process.env.JWT_EXPIRED,
-  jwtExpiredRefresh: process.env.JWT_EXPIRED_REFRESH,
-  jwtVerified: process.env.JWTR_VERIFIED,
-  googleApi: process.env.GOOGLE_API,
-  googleClientId: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  redirectURI: process.env.REDIRECT_URI,
-  clientRedirect: process.env.CLIENT_REDIRECT,
-  clientHost: process.env.CLIENT_HOST,
-  awsAccessKey: process.env.AWS_ACCESS_KEY,
-  awsSecretKey: process.env.AWS_SECRET_KEY,
-  awsRegion: process.env.AWS_REGION,
-  awsFrom: process.env.AWS_FROM,
-  awsUserEmail: process.env.AWS_USER_EMAIL
+  appEnv: process.env.NODE_ENV as string,
+  port: process.env.PORT as string,
+  hostMongo: process.env.MONGO_URI as string,
+  passMongo: process.env.MONGO_PASS as string,
+  dbMongo: process.env.MONGO_DB as string,
+  jwtSecret: process.env.JWT_SECRET as string,
+  jwtExpired: process.env.JWT_EXPIRED as string,
+  jwtExpiredRefresh: process.env.JWT_EXPIRED_REFRESH as string,
+  jwtVerified: process.env.JWTR_VERIFIED as string,
+  googleApi: process.env.GOOGLE_API as string,
+  googleClientId: process.env.GOOGLE_CLIENT_ID as string,
+  clientSecret: process.env.CLIENT_SECRET as string,
+  redirectURI: process.env.REDIRECT_URI as string,
+  clientRedirect: process.env.CLIENT_REDIRECT as string,
+  clientHost: process.env.CLIENT_HOST as string,
+  awsAccessKey: process.env.AWS_ACCESS_KEY as string,
+  awsSecretKey: process.env.AWS_SECRET_KEY as string,
+  awsRegion: process.env.AWS_REGION as string,
+  awsFrom: process.env.AWS_FROM as string,
+  awsUserEmail: process.env.AWS_USER_EMAIL as string
 }
 
 const globalConfig = (app: Express) => {

@@ -15,7 +15,7 @@ globalConfig(app)
 defineRoutes(app)
 app.use(handleErrGlobal)
 
-httpServer.listen(PORT, () => console.log('Server is running ...'))
+httpServer.listen(PORT, () => console.log(`Running at port ${PORT}`))
 dbServices
   .connectMongo()
   .then(() => {
