@@ -1,0 +1,86 @@
+paths:
+  /auth/login:
+    post:
+      tags:
+        - 'auth'
+      summary: 'Login user into system'
+      description: This endpoint to use login user
+      operationId: Login
+      requestBody:
+        description: Send email and password to login user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        '200':
+          description: Login successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Login successfully!!
+                  - $ref: '#/components/schemas/successAuthentication'
+
+        '404':
+          description: Email or password not correct
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email or password not correct
+                  status:
+                    type: number
+                    example: 404
+        '422':
+          description: Validate email and password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Validate fail, try again
+                  error:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: Must be an email
+                      password:
+                        type: string
+                        example: Must be at least 5 characters
+  /user/me:
+    get:
+      tags:
+        - 'user'
+      summary: Get infomation of current user login
+      description: Get info current user
+      operationId: me
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Get infomation user success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Get infomation success
+                      status:
+                        type: number
+                        example: 200
+                  - $ref: '#/components/schemas/User'
