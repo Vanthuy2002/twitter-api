@@ -13,7 +13,7 @@ const limiter = rateLimit({
   windowMs: 15 * 1000 * 60, // 15 minutes
   max: 100, // maximun 100 request in 15 minutes
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
 })
 
 config({
@@ -44,6 +44,7 @@ export const configEnvs = {
 }
 
 const globalConfig = (app: Express) => {
+  app.set("trust proxy", true)
   app.use(express.json())
   app.use(helmet())
   app.use(cors({ origin: isProduction ? configEnvs.clientHost : '*' }))
