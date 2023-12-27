@@ -42,7 +42,7 @@ class TweetServices {
   }
 
   async getTweets() {
-    const tweets = dbServices.tweets.find({})
+    const tweets = dbServices.tweets.find({}).toArray()
     return {
       message: 'Get all tweets',
       status: 200,
