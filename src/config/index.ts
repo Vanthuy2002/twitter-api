@@ -15,7 +15,8 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   validate: {
-    trustProxy: false
+    trustProxy: false,
+    xForwardedForHeader: false
   }
 })
 
@@ -48,6 +49,7 @@ export const configEnvs = {
 
 const globalConfig = (app: Express) => {
   app.use(express.json())
+  app.use(express.static('public'))
   app.use(helmet())
   app.use(cors({ origin: isProduction ? configEnvs.clientHost : '*' }))
   app.use(limiter)
