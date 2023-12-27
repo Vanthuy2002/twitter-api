@@ -41,12 +41,25 @@ class TweetServices {
     }
   }
 
-  async getTweets() {
-    const tweets = await dbServices.tweets.find({}).toArray()
+  async getTweets(req: Request) {
+    const page = Number(req.query.page)
+    const limit = Number(req.query.limit)
+
+    const offset = (page - 1) * limit
+    const [tweets, totalDocs] = await Promise.all([
+      dbServices.tweets.find({}).skip(offset).limit(limit).toArray(),
+      dbServices.tweets.countDocuments()
+    ])
+
+    const totalPages = Math.ceil(totalDocs / limit)
     return {
       message: 'Get all tweets',
       status: 200,
-      tweets
+      tweets,
+      page,
+      limit,
+      totalPages,
+      totalDocs
     }
   }
   async increaseViewTweet(tweet_id: string, user_id?: string) {

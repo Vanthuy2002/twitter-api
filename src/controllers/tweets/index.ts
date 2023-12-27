@@ -13,7 +13,7 @@ export class TweetController {
   }
 
   async getAllTweets(req: Request, res: Response) {
-    const data = await tweetServices.getTweets()
+    const data = await tweetServices.getTweets(req)
     res.status(data.status).json(data)
   }
 

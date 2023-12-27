@@ -12,8 +12,10 @@ import { openapiSpecification } from '@/utils/swagger'
 import { httpStatus } from '@/constants/httpStatus'
 import { Express } from 'express'
 import { ErrorWithStatus } from '@/models/Errors'
+import homeRoutes from './home'
 
 const defineRoutes = (app: Express) => {
+  app.use('/', homeRoutes)
   app.use('/auth', authRoutes)
   app.use('/user', meRoutes)
   app.use('/api', OAuthRoute)

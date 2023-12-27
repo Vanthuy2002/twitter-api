@@ -20,7 +20,7 @@ const tweetCtrl = new TweetController()
 
 tweetRoutes
   .route('/')
-  .get(wrapRequestHandle(tweetCtrl.getAllTweets))
+  .get(validate(paginationValidate), wrapRequestHandle(tweetCtrl.getAllTweets))
   .post(
     isUserLogin(validate(accessTokenValidate)),
     isUserLogin(verifyValidate),
